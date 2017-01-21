@@ -17,6 +17,7 @@ class TheBird: SKSpriteNode
 	var imageView: NSImageView = NSImageView();
 	var direction: NSPoint = NSPoint();
 //	var speed: Double = 5;
+	var angle: Double = 0;
 	func initialize(sendingScene: SKScene, position: NSPoint, visible: Bool)
 	{
 		image = NSImage(named: "eaglebody")!;
@@ -32,21 +33,23 @@ class TheBird: SKSpriteNode
 		speed = 5;
 		name = "bird"
 		super.size = CGSize(width: (sendingScene.view?.frame.size.width)!/12, height: (sendingScene.view?.frame.size.height)!/12)
-		super.position = NSPoint(x: 0, y: 0)
+		//super.position = NSPoint(x: 0, y: 0)
 		super.position = NSPoint(x: (sendingScene.view?.frame.size.width)!/2, y: (sendingScene.view?.frame.size.height)!/2)
 		//super.patter
 	}
 	
 	func updatePhysics(_ time: TimeInterval)
 	{
-		let r = time * Double(speed);
-		let newpos = NSPoint(x: r * cos(2 * 3.14 * time * 5), y: r * sin(2 * 3.14 * time * 5))
-		
+		let r = time * Double(speed) / 10000000;
+		let newpos = CGPoint(x: r * cos(angle), y: r * sin(angle))
+		//angle += 0.001
+		super.position.x += newpos.x;
+		super.position.y += newpos.y
 	
-		imageView.translateOrigin(to: newpos);
 	}
 	
-	func update(_ currentTime: TimeInterval) {
+	  func update(_ currentTime: TimeInterval) {
+
 
 			updatePhysics(currentTime);
 	}

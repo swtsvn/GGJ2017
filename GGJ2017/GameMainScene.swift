@@ -35,18 +35,18 @@ class GameMainScene: SKScene {
 		self.addChild(lightnode)
 		
 		Bird.initialize(sendingScene: sendingScene, position: NSPoint(x: 0, y: 0), visible: true)
-		self.addChild(Bird)
-
+		
 		let bgnode = SKSpriteNode(imageNamed: "bg")
 		bgnode.position = CGPoint(x: sendingScene.view!.frame.width/2, y: (sendingScene.view?.frame.height)!/2)
 		bgnode.size = (sendingScene.view?.frame.size)!
 		self.addChild(bgnode)
 		self.scaleMode = .aspectFill
 		self.size = sendingScene.size
+self.addChild(Bird)
 
 				
 		self.physicsWorld.gravity = CGVector(dx: 0, dy: -1)
-		//self.physicsWorld.contactDelegate = viewController as! SKPhysicsContactDelegate?;
+		//self.physicsWorld.contactDelegate = sendingScene as! SKPhysicsContactDelegate?;
 		sendingScene.view!.presentScene(self, transition: SKTransition.reveal(with: SKTransitionDirection.right, duration: 0.5))
 		
 
@@ -94,6 +94,16 @@ class GameMainScene: SKScene {
     
     
     override func update(_ currentTime: TimeInterval) {
+	
+		
+		Bird.update(currentTime)
+		for child in children{
+			if let sprite = child as? SKSpriteNode {
+			
+				//sprite.
+				//.update(currentTime);
+				}
+		}
         // Called before each frame is rendered
         /*
         // Initialize _lastUpdateTime if it has not already been
