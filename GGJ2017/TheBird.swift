@@ -9,20 +9,46 @@
 import Foundation
 import CoreImage
 import Cocoa
-class TheBird
+import SpriteKit
+import GameplayKit
+class TheBird: SKSpriteNode
 {
 	var image: NSImage = NSImage();
 	var imageView: NSImageView = NSImageView();
-	
-	func initialize(viewController: NSViewController!, position: NSPoint, visible: Bool)
+	var direction: NSPoint = NSPoint();
+//	var speed: Double = 5;
+	func initialize(sendingScene: SKScene, position: NSPoint, visible: Bool)
 	{
-	image = NSImage(named: "eaglebody")!;
-	image.size = NSSize(width: image.size.width/2, height: image.size.height/2)
-	imageView = NSImageView(frame: NSRect(x: 0, y: viewController.view.frame.origin.y + viewController.view.frame.size.height/2, width: image.size.width, height: image.size.height));
-	imageView.image = image;
-	viewController.view.addSubview(imageView)
+		image = NSImage(named: "eaglebody")!;
 		
-				
+		image.size = NSSize(width: image.size.width/2, height: image.size.height/2)
+		let tex = SKTexture(image: image)
+		self.texture = tex
+		
+		imageView = NSImageView(frame: NSRect(x: 0, y: (sendingScene.view?.frame.origin.y)! + (sendingScene.view?.frame.size.height)!/2, width: image.size.width, height: image.size.height));
+		imageView.image = image;
+		direction.x = 1;
+		direction.y = 0;
+		speed = 5;
+		name = "bird"
+		super.size = CGSize(width: (sendingScene.view?.frame.size.width)!/12, height: (sendingScene.view?.frame.size.height)!/12)
+		super.position = NSPoint(x: 0, y: 0)
+		super.position = NSPoint(x: (sendingScene.view?.frame.size.width)!/2, y: (sendingScene.view?.frame.size.height)!/2)
+		//super.patter
+	}
+	
+	func updatePhysics(_ time: TimeInterval)
+	{
+		let r = time * Double(speed);
+		let newpos = NSPoint(x: r * cos(2 * 3.14 * time * 5), y: r * sin(2 * 3.14 * time * 5))
+		
+	
+		imageView.translateOrigin(to: newpos);
+	}
+	
+	func update(_ currentTime: TimeInterval) {
+
+			updatePhysics(currentTime);
 	}
 		
 	

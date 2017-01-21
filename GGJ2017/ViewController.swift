@@ -2,23 +2,48 @@
 //  ViewController.swift
 //  GGJ2017
 //
-//  Created by Sujatha Nagarajan on 1/20/17.
+//  Created by Sujatha Nagarajan on 1/21/17.
 //  Copyright © 2017 GG. All rights reserved.
 //
 
 import Cocoa
+import SpriteKit
+import GameplayKit
 
 class ViewController: NSViewController {
 
-	let game: Game = Game();
+    @IBOutlet var skView: SKView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
+        // including entities and graphs.
+        if let scene = GKScene(fileNamed: "GameScene") {
+            
+            // Get the SKScene from the loaded GKScene
+            if let sceneNode = scene.rootNode as! GameScene? {
+                
+                // Copy gameplay related content over to the scene
+                sceneNode.entities = scene.entities
+                sceneNode.graphs = scene.graphs
+                
+                // Set the scale mode to scale to fit the window
+                sceneNode.scaleMode = .aspectFill
+                
+                // Present the scene
+                if let view = self.skView {
+                    view.presentScene(sceneNode)
+                    
+                    view.ignoresSiblingOrder = true
+                    
+                    view.showsFPS = true
+                    view.showsNodeCount = true
+                }
+            }
+        }
+    }
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		self.view.frame.size.width = self.view.bounds.width
-		self.view.frame.size.height = self.view.bounds.height
-		game.Initialize(viewController: self);
-	}
-
 	override func viewDidAppear() {
 
 	 let presOptions: 
@@ -27,13 +52,6 @@ class ViewController: NSViewController {
         self.view.enterFullScreenMode(NSScreen.main()!, withOptions:optionsDictionary)
         self.view.wantsLayer = true
 	}
-	
-	override var representedObject: Any? {
-		didSet {
-		// Update the view, if already loaded.
-		}
-	}
-
 
 }
 

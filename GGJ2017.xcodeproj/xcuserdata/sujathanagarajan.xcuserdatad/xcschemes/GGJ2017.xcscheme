@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D115628C1E326E1B00AD2A2E"
+               BlueprintIdentifier = "D1F7E84A1E335F7500BB76E2"
                BuildableName = "GGJ2017.app"
                BlueprintName = "GGJ2017"
                ReferencedContainer = "container:GGJ2017.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D115628C1E326E1B00AD2A2E"
+            BlueprintIdentifier = "D1F7E84A1E335F7500BB76E2"
             BuildableName = "GGJ2017.app"
             BlueprintName = "GGJ2017"
             ReferencedContainer = "container:GGJ2017.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D115628C1E326E1B00AD2A2E"
+            BlueprintIdentifier = "D1F7E84A1E335F7500BB76E2"
             BuildableName = "GGJ2017.app"
             BlueprintName = "GGJ2017"
             ReferencedContainer = "container:GGJ2017.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D115628C1E326E1B00AD2A2E"
+            BlueprintIdentifier = "D1F7E84A1E335F7500BB76E2"
             BuildableName = "GGJ2017.app"
             BlueprintName = "GGJ2017"
             ReferencedContainer = "container:GGJ2017.xcodeproj">
