@@ -26,7 +26,6 @@ class TheTree: SKSpriteNode
 		super.size = CGSize(width: width/sizefactor, height: height/sizefactor)
 		let r = CGFloat(arc4random_uniform(500)) + CGFloat(100);
 		super.position = NSPoint(x: width/2 + r, y: height/2 + 50)
-
 	}
 }
 	

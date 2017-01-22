@@ -42,11 +42,9 @@ class GameMainScene: SKScene {
 		self.addChild(bgnode)
 		self.scaleMode = .aspectFill
 		self.size = CGSize(width: width, height: height) 
-			
-		Bird.initialize(width: width, height: height, position: NSPoint(x: 0, y: 0), visible: true)
-		self.addChild(Bird)
-		
-		
+		let sz = self.size
+		self.position = CGPoint(x: 0, y: 0)
+				
 		for k in 1...2 {
 			let tree = TheTree()
 			tree.initialize(width: width, height: height, index: k as NSNumber)
@@ -55,9 +53,28 @@ class GameMainScene: SKScene {
 
 		}
 		
+		let roadnode = SKSpriteNode();
+		if let image = NSImage(named: "road"){
+		
+		//	image.size = NSSize(width: image.size.width, height: image.size.height/2)
+			image.size = NSSize(width: image.size.width, height: image.size.height/1.5)
+			let tex = SKTexture(image: image)
+			roadnode.texture = tex
+			roadnode.size = image.size;
+			let ss = image.size
+			//roadnode.position = NSPoint(x: image.size.width/2, y: 0)
+			roadnode.position = NSPoint(x: image.size.width/2, y: image.size.height - 200)
+
+		}
+		roadnode.name = "road"
+		self.addChild(roadnode)
+		
 		
 
-				
+		Bird.initialize(width: width, height: height, position: NSPoint(x: 0, y: 0), visible: true)
+		self.addChild(Bird)
+		
+
 		self.physicsWorld.gravity = CGVector(dx: 0, dy: -1)
 		//self.physicsWorld.contactDelegate = sendingScene as! SKPhysicsContactDelegate?;
 		

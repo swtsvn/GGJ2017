@@ -57,11 +57,12 @@ class ViewController: NSViewController {
 	
 	override func viewDidAppear() {
 
-	 let presOptions: 
+	/* let presOptions: 
 	 NSApplicationPresentationOptions = ([.fullScreen,.autoHideMenuBar])   
         let optionsDictionary = [NSFullScreenModeApplicationPresentationOptions : NSNumber(value: presOptions.rawValue)]
         self.view.enterFullScreenMode(NSScreen.main()!, withOptions:optionsDictionary)
         self.view.wantsLayer = true
+		*/
 	}
 
 }
