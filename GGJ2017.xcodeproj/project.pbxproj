@@ -11,6 +11,9 @@
 		D13A2CAE1E33667600ABB0F1 /* GameMainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A2CAD1E33667600ABB0F1 /* GameMainScene.swift */; };
 		D13A2CB01E33683E00ABB0F1 /* TheBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A2CAF1E33683E00ABB0F1 /* TheBird.swift */; };
 		D13A2CB21E336A0700ABB0F1 /* drawing.png in Resources */ = {isa = PBXBuildFile; fileRef = D13A2CB11E336A0700ABB0F1 /* drawing.png */; };
+		D13A2CB41E34628E00ABB0F1 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = D13A2CB31E34628E00ABB0F1 /* tree.png */; };
+		D13A2CB61E3462C400ABB0F1 /* TheTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A2CB51E3462C400ABB0F1 /* TheTree.swift */; };
+		D13A2CB81E3474B200ABB0F1 /* road-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D13A2CB71E3474B200ABB0F1 /* road-1.png */; };
 		D1F7E84F1E335F7500BB76E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F7E84E1E335F7500BB76E2 /* AppDelegate.swift */; };
 		D1F7E8511E335F7500BB76E2 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1F7E8501E335F7500BB76E2 /* GameScene.sks */; };
 		D1F7E8531E335F7500BB76E2 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1F7E8521E335F7500BB76E2 /* Actions.sks */; };
@@ -25,6 +28,9 @@
 		D13A2CAD1E33667600ABB0F1 /* GameMainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMainScene.swift; sourceTree = "<group>"; };
 		D13A2CAF1E33683E00ABB0F1 /* TheBird.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheBird.swift; sourceTree = "<group>"; };
 		D13A2CB11E336A0700ABB0F1 /* drawing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawing.png; sourceTree = "<group>"; };
+		D13A2CB31E34628E00ABB0F1 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
+		D13A2CB51E3462C400ABB0F1 /* TheTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheTree.swift; sourceTree = "<group>"; };
+		D13A2CB71E3474B200ABB0F1 /* road-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "road-1.png"; path = "../road-1.png"; sourceTree = "<group>"; };
 		D1F7E84B1E335F7500BB76E2 /* GGJ2017.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGJ2017.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F7E84E1E335F7500BB76E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1F7E8501E335F7500BB76E2 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -47,6 +53,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D13A2CB91E3475FF00ABB0F1 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				D13A2CB31E34628E00ABB0F1 /* tree.png */,
+				D13A2CB11E336A0700ABB0F1 /* drawing.png */,
+				D13A2CB71E3474B200ABB0F1 /* road-1.png */,
+			);
+			name = assets;
+			sourceTree = "<group>";
+		};
 		D1F7E8421E335F7500BB76E2 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +82,7 @@
 		D1F7E84D1E335F7500BB76E2 /* GGJ2017 */ = {
 			isa = PBXGroup;
 			children = (
+				D13A2CB91E3475FF00ABB0F1 /* assets */,
 				D1F7E84E1E335F7500BB76E2 /* AppDelegate.swift */,
 				D1F7E8501E335F7500BB76E2 /* GameScene.sks */,
 				D1F7E8521E335F7500BB76E2 /* Actions.sks */,
@@ -74,7 +91,7 @@
 				D1F7E8561E335F7500BB76E2 /* ViewController.swift */,
 				D1F7E8581E335F7500BB76E2 /* Assets.xcassets */,
 				D13A2CAD1E33667600ABB0F1 /* GameMainScene.swift */,
-				D13A2CB11E336A0700ABB0F1 /* drawing.png */,
+				D13A2CB51E3462C400ABB0F1 /* TheTree.swift */,
 				D13A2CAF1E33683E00ABB0F1 /* TheBird.swift */,
 				D1F7E85A1E335F7500BB76E2 /* Main.storyboard */,
 				D1F7E85D1E335F7500BB76E2 /* Info.plist */,
@@ -143,8 +160,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D13A2CAC1E33643200ABB0F1 /* eaglebody1.png in Resources */,
+				D13A2CB81E3474B200ABB0F1 /* road-1.png in Resources */,
 				D1F7E8511E335F7500BB76E2 /* GameScene.sks in Resources */,
 				D1F7E8591E335F7500BB76E2 /* Assets.xcassets in Resources */,
+				D13A2CB41E34628E00ABB0F1 /* tree.png in Resources */,
 				D1F7E8531E335F7500BB76E2 /* Actions.sks in Resources */,
 				D13A2CB21E336A0700ABB0F1 /* drawing.png in Resources */,
 				D1F7E85C1E335F7500BB76E2 /* Main.storyboard in Resources */,
@@ -161,6 +180,7 @@
 				D13A2CB01E33683E00ABB0F1 /* TheBird.swift in Sources */,
 				D1F7E8571E335F7500BB76E2 /* ViewController.swift in Sources */,
 				D1F7E8551E335F7500BB76E2 /* GameScene.swift in Sources */,
+				D13A2CB61E3462C400ABB0F1 /* TheTree.swift in Sources */,
 				D1F7E84F1E335F7500BB76E2 /* AppDelegate.swift in Sources */,
 				D13A2CAE1E33667600ABB0F1 /* GameMainScene.swift in Sources */,
 			);

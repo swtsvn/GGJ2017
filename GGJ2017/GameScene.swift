@@ -48,12 +48,17 @@ class GameScene: SKScene {
     }
     
     override func mouseUp(with event: NSEvent) {
-		nextScene.initialize(sendingScene: self);
-      
+		   
     }
     
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
+		  case 49:
+			nextScene.initialize(width: self.view!.frame.width, height: (self.view!.frame.height));   
+			self.view!.presentScene(nextScene, transition: SKTransition.reveal(with: SKTransitionDirection.right, duration: 0.5))
+		
+
+			break;
       //  case 0x31:
 		default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")

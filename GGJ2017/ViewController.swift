@@ -13,9 +13,12 @@ import GameplayKit
 class ViewController: NSViewController {
 
     @IBOutlet var skView: SKView!
+    var debugscene = GameMainScene();
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		/*
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
@@ -42,7 +45,15 @@ class ViewController: NSViewController {
                 }
             }
         }
-    }
+		*/
+		debugscene.initialize(width: skView.frame.width, height:skView.frame.height); 
+		skView.presentScene(debugscene, transition: SKTransition.reveal(with: SKTransitionDirection.right, duration: 0.5))
+		
+
+		skView.showsFPS = true
+		skView.showsNodeCount = true
+  
+	}
 	
 	override func viewDidAppear() {
 

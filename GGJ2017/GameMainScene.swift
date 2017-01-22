@@ -13,18 +13,19 @@ class GameMainScene: SKScene {
     
 	let Bird: TheBird = TheBird();
 
-	override func didMove(to view: SKView) {
-		//self.view?.addSubview(view);
-		
-	}
 	
 
-    var entities = [GKEntity]()
+    var trees  = [TheTree]()
+	//: [TheTree?] = Array<TheTree>(repeating: nil, count: 10)
     var graphs = [String : GKGraph]()
     
     private var lastUpdateTime : TimeInterval = 0
     
-	func initialize(sendingScene: SKScene)
+	override func didMove(to view: SKView) {
+	}
+	
+	
+	func initialize(width : CGFloat, height : CGFloat)
 	{
 		let light = SKLightNode()
 		light.position = CGPoint(x: 0,y: 0)
@@ -34,22 +35,32 @@ class GameMainScene: SKScene {
 		lightnode.addChild(light)
 		self.addChild(lightnode)
 		
-		Bird.initialize(sendingScene: sendingScene, position: NSPoint(x: 0, y: 0), visible: true)
 		
 		let bgnode = SKSpriteNode(imageNamed: "bg")
-		bgnode.position = CGPoint(x: sendingScene.view!.frame.width/2, y: (sendingScene.view?.frame.height)!/2)
-		bgnode.size = (sendingScene.view?.frame.size)!
+		bgnode.position = CGPoint(x: width/2, y: height/2)
+		bgnode.size = CGSize(width: width, height: height) 
 		self.addChild(bgnode)
 		self.scaleMode = .aspectFill
-		self.size = sendingScene.size
-self.addChild(Bird)
+		self.size = CGSize(width: width, height: height) 
+			
+		Bird.initialize(width: width, height: height, position: NSPoint(x: 0, y: 0), visible: true)
+		self.addChild(Bird)
+		
+		
+		for k in 1...2 {
+			let tree = TheTree()
+			tree.initialize(width: width, height: height, index: k as NSNumber)
+			self.addChild(tree)
+			trees.append(tree)
+
+		}
+		
+		
 
 				
 		self.physicsWorld.gravity = CGVector(dx: 0, dy: -1)
 		//self.physicsWorld.contactDelegate = sendingScene as! SKPhysicsContactDelegate?;
-		sendingScene.view!.presentScene(self, transition: SKTransition.reveal(with: SKTransitionDirection.right, duration: 0.5))
 		
-
 	}
 	
     override func sceneDidLoad() {
@@ -83,27 +94,43 @@ self.addChild(Bird)
 		
       
     }
+	
+	 func moveLeft(sender: AnyObject?) {
+    print("Left arrow.")
+}
+	
+	func moveRight(sender: AnyObject?) {
+		Bird.SetDirection(NSPoint(x: 1, y: 0))
+	}
     
     override func keyDown(with event: NSEvent) {
+		//interpretKeyEvents([event])
+		print(event.keyCode)
+		
         switch event.keyCode {
-      //  case 0x31:
+		case 124: 
+			Bird.SetDirection(NSPoint(x: 1, y: 0))
+			break
+    //    case 0x31:
 		default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
         }
+		
     }
     
     
     override func update(_ currentTime: TimeInterval) {
 	
-		
-		Bird.update(currentTime)
-		for child in children{
-			if let sprite = child as? SKSpriteNode {
+		if let b = self.childNode(withName: "bird"){
+			Bird.update(currentTime)
+			}
+	//	for child in children{
+			//if let sprite = child as? SKSpriteNode {
 			
 				//sprite.
 				//.update(currentTime);
-				}
-		}
+			//	}
+	//	}
         // Called before each frame is rendered
         /*
         // Initialize _lastUpdateTime if it has not already been
