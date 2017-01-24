@@ -9,11 +9,13 @@
 import SpriteKit
 import GameplayKit
 
-class GameMainScene: SKScene {
+class GameMainScene: SKScene, SKPhysicsContactDelegate {
     
 	let Bird: TheBird = TheBird();
+	let birdCategoryPhysicsMask:UInt32 = 0x1 << 0
+	let treeCategoryPhysicsMask:UInt32 = 0x1 << 1
 
-	
+	var bInitiatePerching = false;
 
     var trees  = [TheTree]()
 	//: [TheTree?] = Array<TheTree>(repeating: nil, count: 10)
@@ -24,6 +26,7 @@ class GameMainScene: SKScene {
 	override func didMove(to view: SKView) {
 	}
 	
+	//todo add override func didMoveToView(view: SKView) {
 	
 	func initialize(width : CGFloat, height : CGFloat)
 	{
@@ -44,10 +47,12 @@ class GameMainScene: SKScene {
 		self.size = CGSize(width: width, height: height) 
 		let sz = self.size
 		self.position = CGPoint(x: 0, y: 0)
+		self.physicsWorld.contactDelegate = self;
+		self.physicsWorld.gravity = CGVector(dx: 0, dy: self.physicsWorld.gravity.dy/16)
 				
 		for k in 1...2 {
 			let tree = TheTree()
-			tree.initialize(width: width, height: height, index: k as NSNumber)
+			tree.initialize(width: width, height: height, index: k as NSNumber, selfCategory: treeCategoryPhysicsMask, collisionCategory: birdCategoryPhysicsMask)
 			self.addChild(tree)
 			trees.append(tree)
 
@@ -71,7 +76,7 @@ class GameMainScene: SKScene {
 		
 		
 
-		Bird.initialize(width: width, height: height, position: NSPoint(x: 0, y: 0), visible: true)
+		Bird.initialize(width: width, height: height, position: NSPoint(x: 0, y: 0), visible: true, selfCategory: birdCategoryPhysicsMask, collisionCategory: treeCategoryPhysicsMask)
 		self.addChild(Bird)
 		
 
@@ -128,6 +133,11 @@ class GameMainScene: SKScene {
 		case 124: 
 			Bird.SetDirection(NSPoint(x: 1, y: 0))
 			break
+		case 49: 
+			//space bar
+			bInitiatePerching = true;
+			break;
+			
     //    case 0x31:
 		default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
@@ -135,12 +145,30 @@ class GameMainScene: SKScene {
 		
     }
     
-    
-    override func update(_ currentTime: TimeInterval) {
+    func collisionBetween(bird: SKNode, object: SKNode)
+	{
+		if object.name == "tree"{
+			Bird.collisionWithTree(object);
+		}
+		
+	}
 	
+	
+    override func update(_ currentTime: TimeInterval) {
+		
+		
 		if let b = self.childNode(withName: "bird"){
-			Bird.update(currentTime)
+			if bInitiatePerching
+			{
+				//check if bird collides with any of the tree nodes in screen.
+				Bird.initiatePerching()
 			}
+	
+			Bird.update(currentTime)
+		}
+		for tree in trees{
+			tree.update(currentTime)
+		}
 	//	for child in children{
 			//if let sprite = child as? SKSpriteNode {
 			
@@ -166,4 +194,8 @@ class GameMainScene: SKScene {
         self.lastUpdateTime = currentTime
 		*/
     }
+	
+	func didBeginContact(contact: SKPhysicsContact!) {
+		let i = 8;
+	}
 }

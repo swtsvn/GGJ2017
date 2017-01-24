@@ -16,23 +16,42 @@ class TheBird: SKSpriteNode
 	var direction: NSPoint = NSPoint();
 	//var speed: Double = 5; super node
 	var angle: Double = 0;
+	enum EPerchingStage{
+		case invalid
+		case start
+		case goingTo
+		case perched
+	}
 	
-	func initialize(width : CGFloat, height : CGFloat, position: NSPoint, visible: Bool)
+	var PerchingState: EPerchingStage = EPerchingStage.invalid
+	
+	func initialize(width : CGFloat, height : CGFloat, position: NSPoint, visible: Bool, selfCategory: UInt32, collisionCategory: UInt32)
 	{
 		let image = NSImage(named: "eaglebody")!;
 		
 		image.size = NSSize(width: image.size.width/2, height: image.size.height/2)
 		let tex = SKTexture(image: image)
 		self.texture = tex
-		
-		direction.x = 1;
+				
+				direction.x = 1;
 		direction.y = 0;
-		speed = 5;
+		speed = 55;
+		
 		name = "bird"
 		super.size = CGSize(width: width/13, height: height/13)
 		//super.position = NSPoint(x: 0, y: 0)
-		super.position = NSPoint(x: width/2, y: height/2 + 50)
-		//super.patter
+		//super.position = NSPoint(x: width/2, y: height/2 + 50)
+		super.position = NSPoint(x: 0, y: height + 50)
+		
+		physicsBody = SKPhysicsBody(rectangleOf: self.size)
+		let pb = physicsBody!
+		pb.isDynamic = true; // moves
+		pb.categoryBitMask = selfCategory
+		pb.contactTestBitMask = collisionCategory
+		pb.contactTestBitMask = physicsBody!.collisionBitMask // tell me about every collision. //todo: optimize to know only the important ones.
+		pb.mass = 5 // todo: play with this value
+
+		
 	}
 	
 	func updatePhysics(_ time: TimeInterval)
@@ -63,5 +82,18 @@ class TheBird: SKSpriteNode
 		updatePhysics(currentTime);
 	}
 		
+		
+	func initiatePerching()
+	{
+		PerchingState = .start
+		//find out if there is a closer by tree to perch. 
+	}
+	
+	func collisionWithTree(_ object: SKNode)
+	{
+		
+	}
+	
+	
 	
 }
